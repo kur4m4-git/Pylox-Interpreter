@@ -20,21 +20,13 @@ class Parser:
     """Parses a list of tokens into an AST."""
 
     def __init__(self, tokens: List[Token]):
-        """Initialize the parser with a list of tokens.
-
-        Args:
-            tokens: List of tokens to parse.
-        """
+    
         self.tokens = tokens
         self.current = 0
         self.errors: List[str] = []  # Store parsing errors
 
     def parse(self) -> List[Stmt]:
-        """Parse tokens into a list of statements.
-
-        Returns:
-            List of AST statement nodes.
-        """
+        """Parse tokens into a list of statements."""
         statements: List[Stmt] = []
         while not self.is_at_end():
             stmt = self.declaration()
@@ -43,11 +35,6 @@ class Parser:
         return statements
 
     def declaration(self) -> Optional[Stmt]:
-        """Parse a declaration (var, fun, class, or statement).
-
-        Returns:
-            A statement AST node or None if synchronized.
-        """
         try:
             if self.match(TokenType.CLASS):
                 return self.class_declaration()
@@ -321,26 +308,14 @@ class Parser:
         raise ParseError()
 
     def consume(self, type: TokenType, message: str) -> Token:
-        """Consume a token of the given type or raise an error.
 
-        Args:
-            type: The expected token type.
-            message: The error message if the token doesn't match.
-
-        Returns:
-            The consumed token.
-        """
         if self.check(type):
             return self.advance()
         self.errors.append(f"[line {self.peek().line}] {message}")
         raise ParseError()
 
     def consume_semicolon(self, message: str) -> None:
-        """Consume a semicolon or EOF, allowing statements to end with newlines or in REPL.
-
-        Args:
-            message: The error message if neither semicolon nor EOF is found.
-        """
+       
         if self.check(TokenType.SEMICOLON) or self.check(TokenType.EOF):
             if self.check(TokenType.SEMICOLON):
                 self.advance()
@@ -349,14 +324,7 @@ class Parser:
         raise ParseError()
 
     def match(self, *types: TokenType) -> bool:
-        """Check if the current token matches any of the given types and advance if so.
-
-        Args:
-            types: Token types to check.
-
-        Returns:
-            True if a match is found and consumed, False otherwise.
-        """
+        
         for type in types:
             if self.check(type):
                 self.advance()
@@ -364,54 +332,27 @@ class Parser:
         return False
 
     def check(self, type: TokenType) -> bool:
-        """Check if the current token is of the given type.
-
-        Args:
-            type: The token type to check.
-
-        Returns:
-            True if the current token matches, False otherwise.
-        """
+       
         if self.is_at_end():
             return False
         return self.peek().type == type
 
     def advance(self) -> Token:
-        """Advance to the next token and return the previous one.
-
-        Returns:
-            The previous token.
-        """
+        
         if not self.is_at_end():
             self.current += 1
         return self.previous()
 
     def is_at_end(self) -> bool:
-        """Check if the parser has reached the end of tokens.
-
-        Returns:
-            True if at the end, False otherwise.
-        """
         return self.peek().type == TokenType.EOF
 
     def peek(self) -> Token:
-        """Return the current token without advancing.
-
-        Returns:
-            The current token.
-        """
         return self.tokens[self.current]
 
     def previous(self) -> Token:
-        """Return the previous token.
-
-        Returns:
-            The previous token.
-        """
         return self.tokens[self.current - 1]
 
     def synchronize(self) -> None:
-        """Synchronize the parser after an error."""
         self.advance()
         while not self.is_at_end():
             if self.previous().type == TokenType.SEMICOLON:
