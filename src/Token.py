@@ -1,7 +1,3 @@
-"""
-Defines the Token class for representing lexical tokens in Lox.
-"""
-
 from TokenType import TokenType
 
 
