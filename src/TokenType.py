@@ -1,7 +1,3 @@
-"""
-Defines the TokenType enum for Lox token types.
-"""
-
 from enum import Enum
 
 
