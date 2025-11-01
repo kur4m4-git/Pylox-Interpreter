@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-Generates AST classes for expressions and statements.
-Run with: python3 GenerateAst.py <output_dir>
-"""
+
 
 import sys
 
@@ -32,7 +29,6 @@ def define_ast(output_dir: str, base_name: str, types: list[str]) -> None:
 
 
 def define_type(file, base_name: str, class_name: str, fields: str) -> None:
-    """Define a single AST class in the output file."""
     file.write(f"\nclass {class_name}({base_name}):\n")
     fields_list = [f.strip() for f in fields.split(",")]
     file.write(f"    def __init__(self, {', '.join(fields_list)}):\n")
