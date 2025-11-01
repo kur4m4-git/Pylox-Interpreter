@@ -1,7 +1,4 @@
-"""
-Defines error handling for the Lox interpreter.
-Includes runtime and parse error classes and error reporting functions.
-"""
+
 
 from sys import stderr
 from Token import Token
