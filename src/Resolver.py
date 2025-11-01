@@ -1,8 +1,3 @@
-"""
-Implements the resolver for static variable resolution in Lox.
-Ensures variables are resolved to their correct scopes.
-"""
-
 from expressions import *
 from statements import *
 from Interpreter import Interpreter
@@ -13,7 +8,6 @@ from RuntimeError import error
 
 
 class Resolver:
-    """Resolves variable references to their correct scopes."""
 
     def __init__(self, interpreter: Interpreter):
         self.interpreter = interpreter
