@@ -17,3 +17,7 @@ A **complete Python implementation** of the **Lox** programming language from th
   print(1 + 2)
   var x = 5
   print(x * 2)
+```sh
+$ git clone https://github.com/kur4m4-git/Pylox.git
+$ pip install Monkey/
+```
