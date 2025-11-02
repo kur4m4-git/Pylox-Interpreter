@@ -12,7 +12,7 @@ A **complete Python implementation** of the **Lox** programming language from th
 ## Installation
 To install PyLox, ensure you have Python 3.8 or higher. 
   ```sh
-  $ git clone https://github.com/kur4m4-git/Pylox.git
+  $ git clone https://github.com/kur4m4-git/Pylox-Interpreter.git
   $ pip install pylox/
   ```
 
